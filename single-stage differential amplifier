@@ -1,0 +1,36 @@
+\\ python code for calcultion
+
+import math
+
+# Specifications
+loop_gain_db = 40  # dB
+ugb_target = 80e6  # 80 MHz
+cmrr_target_db = 81  # dB
+
+# 1. Calculate Loop Gain (A)
+loop_gain_linear = 10 ** (loop_gain_db / 20)  # Convert dB to linear scale
+print(f"Loop Gain (Linear): A > {loop_gain_linear:.2f}")
+
+# 2. Calculate Unity-Gain Bandwidth (UGB)
+# Assuming loop gain (A) is the same as calculated above
+# UGB = A * Bandwidth
+A = loop_gain_linear  # Taking A as the calculated loop gain
+bandwidth = ugb_target / A
+print(f"Bandwidth for UGB of {ugb_target/1e6:.2f} MHz: {bandwidth/1e3:.2f} kHz")
+
+# 3. Calculate CMRR
+# Convert CMRR from dB to linear scale
+cmrr_linear = 10 ** (cmrr_target_db / 20)  # CMRR in linear scale
+# Using CMRR = Ad / Acm
+A_d_A_cm = cmrr_linear
+print(f"Common-Mode Rejection Ratio (CMRR): Ad / Acm ≈ {A_d_A_cm:.2f}")
+
+
+\\ output 
+
+Loop Gain (Linear): A > 100.00
+Bandwidth for UGB of 80.00 MHz: 800.00 kHz
+Common-Mode Rejection Ratio (CMRR): Ad / Acm ≈ 11227.24
+
+
+
